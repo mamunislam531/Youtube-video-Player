@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:youtube_player/view/play_list/play_list.dart';
-import 'package:youtube_player/view/video_play/youtube_video_player.dart';
-import 'package:youtube_player/view/video_play/player.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]).then(
-    (_) => runApp(MyApp()),
+    (_) => runApp(const MyApp()),
   );
 }
 
@@ -25,3 +23,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+

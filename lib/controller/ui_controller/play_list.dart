@@ -38,4 +38,6 @@ class PlayListController extends GetxController {
     getThumbnailList();
     super.onInit();
   }
+
+ 
 }

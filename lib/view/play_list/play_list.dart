@@ -41,8 +41,8 @@ class PlayListScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(width: 10),
-                    Expanded(
+                    const SizedBox(width: 10),
+                    const Expanded(
                       flex: 6,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,

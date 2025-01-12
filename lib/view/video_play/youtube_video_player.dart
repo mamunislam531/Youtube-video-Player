@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YouTubeVideoPlayer extends StatefulWidget {
@@ -27,19 +29,31 @@ class _YouTubeVideoPlayerState extends State<YouTubeVideoPlayer> {
   }
 
   @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: YoutubePlayer(
-        controller: _controller,
-        liveUIColor: Colors.amber,
-        actionsPadding: EdgeInsets.all(50),
-        progressColors: ProgressBarColors(backgroundColor: Colors.white, playedColor: Colors.red, bufferedColor: Colors.blue, handleColor: Colors.blue),
+    return WillPopScope(
+      onWillPop: () async {
+        await Future.delayed(const Duration(seconds: 1));
+        SystemChrome.setPreferredOrientations([
+          DeviceOrientation.portraitUp,
+        ]);
+        Get.back();
+        _controller.dispose();
+
+        return false;
+      },
+      child: Scaffold(
+        body: Center(
+          child: YoutubePlayer(
+            controller: _controller,
+            liveUIColor: Colors.amber,
+            actionsPadding: const EdgeInsets.all(50),
+            progressColors: const ProgressBarColors(
+                backgroundColor: Colors.white,
+                playedColor: Colors.red,
+                bufferedColor: Colors.blue,
+                handleColor: Colors.blue),
+          ),
+        ),
       ),
     );
   }
